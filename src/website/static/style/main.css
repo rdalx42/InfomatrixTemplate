@@ -1,0 +1,176 @@
+
+
+body {
+    background-color: rgb(15, 15, 15);
+    color:white;
+    font-weight: 700;
+    font-family: monospace;
+}
+
+.register_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centers all children horizontally */
+    /* gap: 15px;             spacing between inputs and button */
+}
+
+
+.BgImage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;     
+    height: 100vh;    
+    object-fit: cover;
+    filter: blur(8px);
+    z-index: -1;      
+
+
+    animation: zoomPulse 15s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+@keyframes zoomPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Slight zoom in */
+    }
+    100% {
+        transform: scale(1); /* Back to original */
+    }
+}
+
+.RegisterContentHolder {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 60vw;
+    max-width: 900px;
+    height: 100vh;
+    max-height: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    overflow-y: auto; /* enables vertical scrolling */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* keep horizontal centering */
+    /* remove justify-content center for scrollable content */
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+
+.RegisterPage, .LoginPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;  /* shrink to content */
+    width: 100%;   /* optional, so inputs fill nicely */
+}
+
+.TextBox {
+   /* width: 60%; */
+    padding: 12px 15px;          /* gives space inside the box */
+    margin-bottom: 15px;         /* spacing between textboxes */
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(30, 30, 30);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    transition: all 0.3s ease;   /* smooth hover/focus transitions */
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1); /* subtle inner shadow */
+}
+
+.divider{
+    background-color: white;
+    width: 60%;
+    height: 20px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.TextBox::placeholder {
+    color: rgba(255, 255, 255, 0.5);  /* lighter placeholder text */
+}
+
+.TextBox:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;    /* blue glow on focus */
+    background-color: rgb(40, 40, 40); /* slightly lighter bg on focus */
+}
+
+.register {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;       /* needed for the arrow */
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Arrow element */
+.register::after {
+    content: "→";            /* arrow character */
+    position: absolute;
+    right: 15px;             /* distance from button edge */
+    top: 50%;
+    transform: translateY(-50%) translateX(-10px); /* start slightly inside */
+    opacity: 0;              /* hidden initially */
+    transition: all 0.3s ease;
+}
+
+/* On hover, arrow slides in */
+.register:hover::after {
+    transform: translateY(-50%) translateX(0); /* slide to visible position */
+    opacity: 1;
+}
+
+/* Optional: button hover effect */
+.register:hover {
+    background-color: #2563eb; /* slightly darker blue */
+}
+ul.flashes {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 9999;
+}
+
+/* Flash boxes */
+ul.flashes li {
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    opacity: 0.95;
+    animation: fadeOut 4s forwards;
+}
+
+/* Colors by category */
+ul.flashes li.warning { background-color: orange; }
+ul.flashes li.error { background-color: red; }
+ul.flashes li.success { background-color: green; }
+
+/* Fade-out animation */
+@keyframes fadeOut {
+    0% { opacity: 0; transform: translateY(-20px); }
+    10% { opacity: 0.95; transform: translateY(0); }
+    90% { opacity: 0.95; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
