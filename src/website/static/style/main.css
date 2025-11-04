@@ -7,6 +7,21 @@ body {
     font-family: monospace;
 }
 
+img {
+    user-select: none;
+}
+
+*::selection {
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0);              
+}
+
+/* For Firefox (older versions) */
+*::-moz-selection {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
 .register_form {
     display: flex;
     flex-direction: column;
@@ -173,4 +188,58 @@ ul.flashes li.success { background-color: green; }
     10% { opacity: 0.95; transform: translateY(0); }
     90% { opacity: 0.95; transform: translateY(0); }
     100% { opacity: 0; transform: translateY(-20px); }
+}
+
+.TopBar {
+    position: fixed;       /* Fixes it to the top of the viewport */
+    top: 0;                /* Aligns to the very top */
+    left: 0;               /* Aligns to the left edge */
+    width: 100%;           /* Full width across the page */
+    height: 5vh;           /* 5% of viewport height */
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;         /* Center content */
+    align-items: center;   /* Vertically center the text */
+    /* justify-content: center; Horizontally center the text */
+    z-index: 1000;         /* Ensure it stays above other elements */
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.logout {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 0.75rem;       /* smaller text */
+    padding: 4px 10px;        /* smaller padding */
+    border: none;
+    border-radius: 4px;       /* smaller rounding */
+    cursor: pointer;
+    position: absolute;        /* position relative to parent */
+    right: 4vh;                /* adjust distance from right */
+    top: 0.5vh;                  /* optional: distance from top */
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Optional hover effect */
+.logout:hover {
+    background-color: #000000;
+    color: white;
+}
+
+/* If using arrow pseudo-element */
+.logout::after {
+  
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-3px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.logout:hover::after {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
 }
