@@ -15,7 +15,7 @@ def home():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    # Determine greeting
+    
     hour = datetime.now().hour
     if 5 <= hour < 12:
         greeting = "Good Morning"
@@ -54,10 +54,22 @@ def register():
 
     return render_template("register.html", greeting=greeting)
 
-@app.route("/api")
+@app.route("/api",methods = ["POST","GET"])
 
 def api():
-
+    
     # api 
-    return "Api conn"
+    
+    clicked_button = None
+
+    if request.method == "POST":
+        clicked_button = request.form.get("action")
+    
+    if clicked_button == "Logout":
+        print('yes')
+        session["username"] = None
+        return redirect(url_for("register"))
+
+    greeting = "Welcome Back, " + session["username"]
+    return render_template("home.html",greeting = greeting)
     
