@@ -3,9 +3,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from datetime import datetime
 from db.db import init_db, add_user, check_user  
+import os 
 
 app = Flask(__name__)
-app.secret_key = "placeholder" # not set yet   
+app.secret_key = os.urandom(24) # placeholder
 
 init_db()
 
@@ -29,7 +30,7 @@ def register():
         password = request.form.get("password", "").strip()
         clicked_button = request.form.get("action")  
 
-        print(username,"<u", password , "<p")
+        # print(username,"<u", password , "<p")
 
         if not  username or not password:
             if clicked_button == "Login" or clicked_button == "Register":
@@ -56,20 +57,25 @@ def register():
 
 @app.route("/api",methods = ["POST","GET"])
 
+
 def api():
     
     # api 
     
     clicked_button = None
-
+    
     if request.method == "POST":
         clicked_button = request.form.get("action")
     
     if clicked_button == "Logout":
-        print('yes')
+        
+        # print('yes')
         session["username"] = None
         return redirect(url_for("register"))
 
-    greeting = "Welcome Back, " + session["username"]
+    elif clicked_button == "Create" and session["already_quened"] == False:
+        session["already_quened"] = True
+
+    greeting = "Welcome, " + session["username"] + "👋"
     return render_template("home.html",greeting = greeting)
     
