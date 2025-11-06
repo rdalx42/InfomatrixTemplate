@@ -110,6 +110,29 @@ img {
     margin-bottom: 10px;
 }
 
+::-webkit-scrollbar {
+    width: 10px;            /* vertical scrollbar */
+    height: 10px;           /* horizontal scrollbar */
+}
+
+/* Track (background) */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05); /* subtle background */
+    border-radius: 5px;
+}
+
+/* Thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); /* default color */
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.2); /* optional padding */
+}
+
+/* Thumb hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
 .TextBox::placeholder {
     color: rgba(255, 255, 255, 0.5);  /* lighter placeholder text */
 }
