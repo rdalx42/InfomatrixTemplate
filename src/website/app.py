@@ -30,11 +30,11 @@ def register():
     
     hour = datetime.now().hour
     if 5 <= hour < 12:
-        greeting = "Good Morning"
+        greeting = "Good Morning🌲"
     elif 12 <= hour < 18:
-        greeting = "Good Evening"
+        greeting = "Good Afternoon☀️"
     else:
-        greeting = "Good Night"
+        greeting = "Good Evening🌙"
 
     if request.method == "POST":
         username = request.form.get("username", "").strip()
