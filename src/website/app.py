@@ -48,8 +48,7 @@ def register():
 
         # REGISTER new user
         if clicked_button == "Register":
-            hashed_password = generate_password_hash(password)
-            success, message = add_user(username, hashed_password)
+            success, message = add_user(username, password)
             if success:
                 session["username"] = username
                 session["already_quened"] = False
@@ -62,6 +61,7 @@ def register():
         # LOGIN existing user
         elif clicked_button == "Login":
             user = get_user(username)
+            print("checking: ", user["password"], " at username: ", username , " for password input: ", sha256_crypt.hash(password))
             if user and sha256_crypt.verify(password, user["password"]):
                 session["username"] = username
                 session["already_quened"] = False
