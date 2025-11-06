@@ -36,6 +36,11 @@
                 <input class="TextBox" type="text" name="username" placeholder="Username">
                 <br>
                 <input class="TextBox" type="password" name="password" placeholder="Password">
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="show_pass">
+                    <span class="checkmark"></span>
+                    Show Password
+                </label>
                 <br>
                 <button class="register" type="submit" name="action" value="Register">Register</button>
             </form>
@@ -49,19 +54,17 @@
                 <input class="TextBox" type="text" name="username" placeholder="Username">
                 <br>
                 <input class="TextBox" type="password" name="password" placeholder="Password">
-                <br>
                 <label class="custom-checkbox">
-                    <input type="checkbox" name="remember">
+                    <input type="checkbox" name="show_pass">
                     <span class="checkmark"></span>
-                    Remember Me
-                </label>       
-                
+                    Show Password
+                </label>
                 <br>
                 <button class="register" type="submit" name="action" value="Login">Login</button>
-                         
             </form>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='scripts/password_toggle.js') }}"></script>
 
 </body>
 </html>
