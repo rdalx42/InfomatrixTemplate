@@ -10,13 +10,13 @@
 <body>
     
     <img class="BgImage"
-         src="{% if greeting == 'Good Morning' %}/static/images/goodmorning.png
-              {% elif greeting == 'Good Evening' %}/static/images/goodevening.png
+         src="{% if greeting == 'Good Morning🌲' %}/static/images/goodmorning.png
+              {% elif greeting == 'Good Evening☀️' %}/static/images/goodevening.png
               {% else %}/static/images/goodnight.png
               {% endif %}">
 
     <div class="RegisterContentHolder">
-        <h1>{{ greeting }}!</h1>
+        <h1>{{ greeting }}</h1>
 
        
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -35,12 +35,13 @@
             <form method="POST" class="register_form">
                 <input class="TextBox" type="text" name="username" placeholder="Username">
                 <br>
-                <input class="TextBox" type="password" name="password" placeholder="Password">
+                <input class="TextBox" type="password" name="password" placeholder="Password" id = "password_register">
                 <label class="custom-checkbox">
                     <input type="checkbox" name="show_pass">
                     <span class="checkmark"></span>
                     Show Password
                 </label>
+                
                 <br>
                 <button class="register" type="submit" name="action" value="Register">Register</button>
             </form>
@@ -64,7 +65,8 @@
             </form>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='scripts/password_toggle.js') }}"></script>
 
+    <script src="{{ url_for('static', filename='scripts/register/password_strenght_meter.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/register/password_toggle.js') }}"></script>
 </body>
 </html>
