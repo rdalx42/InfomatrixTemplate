@@ -8,7 +8,7 @@ from passlib.hash import sha256_crypt
 import os 
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = os.environ.get("sfkey")
 
 app.permanent_session_lifetime = timedelta(days=30)
 
@@ -22,6 +22,7 @@ def home():
 @app.route("/register",methods = ["GET","POST"])
 def register():
     # auto redirect if user doesn't exist
+   
     if "username" in session and session.get("remember_me"):
         if "already_quened" not in session:
             session["already_quened"] = False
@@ -52,8 +53,6 @@ def register():
             if success:
                 session["username"] = username
                 session["already_quened"] = False
-                session.permanent = True  # optional for newly registered
-                session["remember_me"] = bool(remember == "on")
                 return redirect(url_for("api"))
             else:
                 flash(message, "error")
@@ -61,15 +60,17 @@ def register():
         # LOGIN existing user
         elif clicked_button == "Login":
             user = get_user(username)
-            print("checking: ", user["password"], " at username: ", username , " for password input: ", sha256_crypt.hash(password))
+           
             if user and sha256_crypt.verify(password, user["password"]):
                 session["username"] = username
                 session["already_quened"] = False
 
                 if remember == "on":
+                    print("remember")
                     session.permanent = True
                     session["remember_me"] = True
                 else:
+                    print("don't remember")
                     session.permanent = False
                     session["remember_me"] = False
 
